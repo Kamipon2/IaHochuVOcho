@@ -19,7 +19,7 @@ public class StrimerWriter : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(path, false))
         {
            await writer.WriteLineAsync(text);
-        }
+        } 
     }
 
     // Update is called once per frame
