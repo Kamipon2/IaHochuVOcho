@@ -604,6 +604,7 @@ MonoBehaviour:
   fieldOfViewAngle: 70
   chaseSpeed: 3.5
   stoppingDistance: 0
+  chaseDuration: 6
 --- !u!1 &962387373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 80c8795f1105753419c346374df99d52, type: 3}
@@ -1293,7 +1294,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457355104}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d675ef87ff61af34598bb8944214c412, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
