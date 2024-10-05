@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections; 
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player; // Ссылка на игрока
-    public float detectionRange = 10f; // Дальность обнаружения
-    public float fieldOfViewAngle = 110f; // Угол поля зрения
-    public float chaseSpeed = 3.5f; // Скорость преследования
-    public float stoppingDistance = 1.5f; // Расстояние, на котором враг останавливается от игрока
+    public Transform player; 
+    public float detectionRange = 10f; 
+    public float fieldOfViewAngle = 110f; 
+    public float chaseSpeed = 3.5f; 
+    public float stoppingDistance = 1.5f; 
+    public float chaseDuration = 6f; 
 
     private NavMeshAgent agent;
     private bool isChasing = false;
@@ -46,6 +48,7 @@ public class EnemyAI : MonoBehaviour
                     {
                         Debug.Log("Игрок обнаружен!");
                         isChasing = true;
+                        StartCoroutine(EndChaseAfterTime(chaseDuration)); 
                     }
                 }
             }
@@ -60,12 +63,19 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer <= stoppingDistance)
         {
-            agent.isStopped = true; // Остановить движение, когда слишком близко к игроку
+            agent.isStopped = true; 
         }
         else
         {
-            agent.isStopped = false; // Возобновить движение к игроку
+            agent.isStopped = false;
         }
+    }
+
+    private IEnumerator EndChaseAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isChasing = false;
+        Debug.Log("Преследование завершено!");
     }
 
     private void OnDrawGizmos()
